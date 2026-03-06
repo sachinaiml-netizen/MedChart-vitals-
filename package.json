@@ -1,0 +1,28 @@
+{
+  "name": "medchart-vitals",
+  "version": "1.0.0",
+  "description": "A web-based dashboard that reads a patient's heart rate, blood pressure, and temperature and provides an interactive real-time dashboard visualizing the patient's vitals to allow for rapid clinical assessment.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sachinaiml-netizen/MedChart-vitals-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sachinaiml-netizen/MedChart-vitals-/issues"
+  },
+  "homepage": "https://github.com/sachinaiml-netizen/MedChart-vitals-#readme",
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "csv-parse": "^6.1.0",
+    "express": "^5.2.1",
+    "multer": "^2.1.1"
+  }
+}

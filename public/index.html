@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedChart — Patient Vitals Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="header-icon">🏥</span>
+      <div>
+        <h1>MedChart</h1>
+        <p class="header-sub">Patient Vitals Dashboard</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Upload Section -->
+    <section class="card upload-card">
+      <h2>Upload Vitals CSV</h2>
+      <p class="hint">Required columns: <code>timestamp, heart_rate, systolic_bp, temperature</code></p>
+      <div class="upload-area" id="uploadArea">
+        <input type="file" id="csvInput" accept=".csv" aria-label="Upload CSV file" />
+        <label for="csvInput" class="upload-label">
+          <span class="upload-icon">📂</span>
+          <span id="fileName">Choose a .csv file or drag &amp; drop here</span>
+        </label>
+      </div>
+      <button id="uploadBtn" disabled>Analyze Vitals</button>
+      <p id="uploadError" class="error-msg" role="alert" aria-live="polite"></p>
+    </section>
+
+    <!-- Hidden until data loads -->
+    <div id="dashboard" hidden>
+
+      <!-- Alert Panel -->
+      <section class="card alert-card" id="alertSection">
+        <h2>⚠️ Critical Alerts</h2>
+        <p id="noAlerts" class="no-alerts">No critical readings detected.</p>
+        <ul id="alertList" class="alert-list"></ul>
+      </section>
+
+      <!-- Charts -->
+      <section class="card chart-card">
+        <h2>Heart Rate <span class="unit">(BPM)</span></h2>
+        <div class="threshold-info">Normal: 60–100 | <span class="critical-label">Critical: &lt;50 or &gt;120</span></div>
+        <div class="chart-wrapper">
+          <canvas id="hrChart"></canvas>
+        </div>
+      </section>
+
+      <section class="card chart-card">
+        <h2>Systolic Blood Pressure <span class="unit">(mmHg)</span></h2>
+        <div class="threshold-info">Normal: 90–120 | <span class="critical-label">Critical: &lt;80 or &gt;160</span></div>
+        <div class="chart-wrapper">
+          <canvas id="bpChart"></canvas>
+        </div>
+      </section>
+
+      <section class="card chart-card">
+        <h2>Temperature <span class="unit">(°C)</span></h2>
+        <div class="threshold-info">Normal: 36.1–37.2 | <span class="critical-label">Critical: &lt;35.0 or &gt;38.5</span></div>
+        <div class="chart-wrapper">
+          <canvas id="tempChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Legend -->
+      <section class="card legend-card">
+        <div class="legend">
+          <span class="legend-dot normal"></span><span>Normal</span>
+          <span class="legend-dot critical"></span><span>Critical</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>MedChart &copy; 2025 — For clinical monitoring purposes only.</p>
+  </footer>
+
+  <!-- Chart.js (self-hosted) -->
+  <script src="chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
